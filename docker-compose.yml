@@ -1,0 +1,31 @@
+version: '2'
+services:
+  spotify:
+    build: ./spotify
+    restart: on-failure
+    network_mode: host
+    privileged: true
+    volumes:
+      - spotifycache:/var/cache/raspotify
+      - snapcast:/var/cache/snapcast
+  snapcast-server:
+    build: 
+      context: ./snapcast-server
+    restart: on-failure
+    ports:
+      - 1704:1704
+      - 1705:1705
+    volumes:
+      - snapcast:/var/cache/snapcast
+  snapcast-client:
+    build: 
+      context: ./snapcast-client
+    restart: on-failure 
+    network_mode: host 
+    privileged: true
+    volumes:
+      - snapcast:/var/cache/snapcast
+volumes:
+  spotifycache:
+  bluetoothcache:
+  snapcast:
