@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-DEVICE_NAME = "Everywhere"
+DEVICE_NAME="Everywhere"
 
 # Set the device broadcast name for Spotify
 if [[ -z "$DEVICE_NAME" ]]; then
-  DEVICE_NAME=$(printf "Spotify %s" $(hostname | cut -c -4))
+  DEVICE_NAME="Spotify Speaker"
 fi
 
 # Set the system volume here
