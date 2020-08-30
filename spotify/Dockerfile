@@ -1,10 +1,10 @@
 FROM debian:buster
 
-RUN apt-get install curl
+RUN apt-get update
+RUN apt-get -y install wget apt-transport-https libasound2
 
-RUN curl -sSL https://dtcooper.github.io/raspotify/key.asc | apt-key add -v - 2> /dev/null \
-  && echo 'deb https://dtcooper.github.io/raspotify jessie main' | tee /etc/apt/sources.list.d/raspotify.list \
-  && install_packages raspotify
+RUN wget https://dtcooper.github.io/raspotify/raspotify-latest.deb
+RUN dpkg -i raspotify-latest.deb
 
 COPY start.sh /usr/src/
 
