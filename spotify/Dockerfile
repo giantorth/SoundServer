@@ -1,5 +1,7 @@
 FROM debian:buster
 
+RUN apt-get install curl
+
 RUN curl -sSL https://dtcooper.github.io/raspotify/key.asc | apt-key add -v - 2> /dev/null \
   && echo 'deb https://dtcooper.github.io/raspotify jessie main' | tee /etc/apt/sources.list.d/raspotify.list \
   && install_packages raspotify
